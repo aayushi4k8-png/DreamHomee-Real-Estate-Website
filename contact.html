@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Agents | DreamHome</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .agents-section {
+            padding: 55px 8%;
+            background: #f4f6fa;
+            min-height: 75vh;
+        }
+
+        .agents-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .agents-heading h1 {
+            font-size: 32px;
+            color: #14213d;
+        }
+
+        .agents-heading p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .agents-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .agent-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .agent-info {
+            padding: 22px;
+        }
+
+        .agent-info h2 {
+            color: #14213d;
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .agent-role {
+            color: #fca311;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .agent-info p {
+            color: #666;
+            margin: 9px 0;
+            font-size: 14px;
+        }
+
+        .agent-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 22px;
+            background: #14213d;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .agent-btn:hover {
+            background: #fca311;
+            color: #14213d;
+        }
+
+        .agents-note {
+            text-align: center;
+            margin-top: 35px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media(max-width: 900px) {
+            .agents-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 600px) {
+            .agents-container {
+                grid-template-columns: 1fr;
+            }
+
+            .agents-heading h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">Dream<span>Home</span></div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="buy.html">Buy</a></li>
+                <li><a href="rent.html">Rent</a></li>
+                <li><a href="emi-calculator.html">EMI Calculator</a></li>
+                <li><a href="agents.html" class="active">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="post-property.html" class="post-btn">
+                        Post Property
+                    </a>
+                </li>
+            </ul>
+
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        </nav>
+    </header>
+
+    <!-- Agents Section -->
+    <section class="agents-section">
+
+        <div class="agents-heading">
+            <h1>Meet Our Real Estate Agents</h1>
+
+            <p>
+                Our professional team is here to help you find
+                your perfect property.
+            </p>
+        </div>
+
+        <div class="agents-container">
+
+            <!-- Agent 1 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Rahul Sharma</h2>
+
+                    <div class="agent-role">
+                        Senior Property Consultant
+                    </div>
+
+                    <p>Experience: 8 Years</p>
+                    <p>Specialization: Residential Properties</p>
+                    <p>Phone: 9876543210</p>
+                    <p>Email: rahul@dreamhome.com</p>
+
+                    <a href="mailto:rahul@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Agent 2 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Priya Verma</h2>
+
+                    <div class="agent-role">
+                        Property Advisor
+                    </div>
+
+                    <p>Experience: 6 Years</p>
+                    <p>Specialization: Luxury Apartments</p>
+                    <p>Phone: 9876543211</p>
+                    <p>Email: priya@dreamhome.com</p>
+
+                    <a href="mailto:priya@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Agent 3 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Amit Singh</h2>
+
+                    <div class="agent-role">
+                        Commercial Property Expert
+                    </div>
+
+                    <p>Experience: 10 Years</p>
+                    <p>Specialization: Commercial Properties</p>
+                    <p>Phone: 9876543212</p>
+                    <p>Email: amit@dreamhome.com</p>
+
+                    <a href="mailto:amit@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Agent 4 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Neha Gupta</h2>
+
+                    <div class="agent-role">
+                        Rental Property Consultant
+                    </div>
+
+                    <p>Experience: 5 Years</p>
+                    <p>Specialization: Rental Properties</p>
+                    <p>Phone: 9876543213</p>
+                    <p>Email: neha@dreamhome.com</p>
+
+                    <a href="mailto:neha@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Agent 5 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Vikas Malhotra</h2>
+
+                    <div class="agent-role">
+                        Property Investment Advisor
+                    </div>
+
+                    <p>Experience: 9 Years</p>
+                    <p>Specialization: Property Investment</p>
+                    <p>Phone: 9876543214</p>
+                    <p>Email: vikas@dreamhome.com</p>
+
+                    <a href="mailto:vikas@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Agent 6 -->
+            <div class="agent-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600"
+                    alt="Real estate agent">
+
+                <div class="agent-info">
+
+                    <h2>Simran Kaur</h2>
+
+                    <div class="agent-role">
+                        Customer Relationship Manager
+                    </div>
+
+                    <p>Experience: 7 Years</p>
+                    <p>Specialization: Customer Support</p>
+                    <p>Phone: 9876543215</p>
+                    <p>Email: simran@dreamhome.com</p>
+
+                    <a href="mailto:simran@dreamhome.com"
+                       class="agent-btn">
+                        Contact Agent
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <p class="agents-note">
+            Note: Agent details shown here are sample demonstration data.
+        </p>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 DreamHome. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

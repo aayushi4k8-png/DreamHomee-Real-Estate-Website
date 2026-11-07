@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post Property | DreamHome</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .post-section {
+            background: #f4f6fa;
+            padding: 50px 8%;
+        }
+
+        .post-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .post-heading h1 {
+            color: #14213d;
+            font-size: 32px;
+        }
+
+        .post-heading p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-title {
+            color: #14213d;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fca311;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #14213d;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fca311;
+        }
+
+        .upload-box {
+            border: 2px dashed #aaa;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .upload-box input {
+            border: none;
+            padding: 10px;
+        }
+
+        #imagePreview {
+            display: none;
+            max-width: 100%;
+            max-height: 250px;
+            margin: 20px auto 0;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #fca311;
+            color: #14213d;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #e69500;
+        }
+
+        #successMessage {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media(max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 22px;
+            }
+
+            .post-heading h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">Dream<span>Home</span></div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="buy.html">Buy</a></li>
+                <li><a href="rent.html">Rent</a></li>
+                <li><a href="emi-calculator.html">EMI Calculator</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="post-property.html" class="post-btn">
+                        Post Property
+                    </a>
+                </li>
+            </ul>
+
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        </nav>
+    </header>
+
+    <!-- Post Property Section -->
+    <section class="post-section">
+
+        <div class="post-heading">
+            <h1>Post Your Property</h1>
+            <p>List your property with DreamHome and reach potential buyers.</p>
+        </div>
+
+        <div class="form-container">
+
+            <div id="successMessage">
+                Property submitted successfully!
+                Your demo submission has been saved in this browser.
+            </div>
+
+            <form id="propertyForm">
+
+                <!-- Owner Details -->
+                <h2 class="form-title">Owner Information</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="ownerName">Owner Name *</label>
+                        <input type="text" id="ownerName"
+                               placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Contact Number *</label>
+                        <input type="tel" id="phone"
+                               placeholder="10-digit mobile number"
+                               maxlength="10" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email"
+                               placeholder="Enter your email" required>
+                    </div>
+
+                </div>
+
+                <!-- Property Details -->
+                <h2 class="form-title">Property Information</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="propertyTitle">Property Title *</label>
+                        <input type="text" id="propertyTitle"
+                               placeholder="Example: Luxury 3 BHK Apartment"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="propertyType">Property Type *</label>
+
+                        <select id="propertyType" required>
+                            <option value="">Select Property Type</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Villa">Villa</option>
+                            <option value="Independent House">
+                                Independent House
+                            </option>
+                            <option value="Plot">Plot</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listingType">Listing Type *</label>
+
+                        <select id="listingType" required>
+                            <option value="">Select Option</option>
+                            <option value="Buy">For Sale</option>
+                            <option value="Rent">For Rent</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+
+                        <input type="text" id="city"
+                               placeholder="Enter city" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">Full Property Address *</label>
+
+                        <textarea id="address"
+                                  placeholder="Enter complete property address"
+                                  required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price (₹) *</label>
+
+                        <input type="number" id="price"
+                               min="1" placeholder="Enter property price"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bhk">Bedrooms (BHK) *</label>
+
+                        <select id="bhk" required>
+                            <option value="">Select BHK</option>
+                            <option value="1">1 BHK</option>
+                            <option value="2">2 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="4">4 BHK</option>
+                            <option value="5">5+ BHK</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+
+                        <input type="number" id="bathrooms"
+                               min="1" max="20"
+                               placeholder="Number of bathrooms">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area">Area (sq. ft.) *</label>
+
+                        <input type="number" id="area"
+                               min="1" placeholder="Enter area"
+                               required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Property Description *</label>
+
+                        <textarea id="description"
+                                  placeholder="Describe your property..."
+                                  required></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Image Upload -->
+                <h2 class="form-title">Property Image</h2>
+
+                <div class="upload-box">
+
+                    <p>Upload a picture of your property</p>
+
+                    <input type="file" id="propertyImage"
+                           accept="image/png, image/jpeg, image/webp">
+
+                    <img id="imagePreview" alt="Property image preview">
+
+                </div>
+
+                <br>
+
+                <button type="submit" class="submit-btn">
+                    Submit Property
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 DreamHome. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <script>
+
+        // Property image preview
+        const imageInput = document.getElementById("propertyImage");
+        const imagePreview = document.getElementById("imagePreview");
+
+        let selectedImageData = "";
+
+        imageInput.addEventListener("change", function() {
+
+            const file = this.files[0];
+
+            if (!file) {
+                selectedImageData = "";
+                imagePreview.removeAttribute("src");
+                imagePreview.style.display = "none";
+                return;
+            }
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert("Please upload a JPG, PNG, or WEBP image.");
+                this.value = "";
+                return;
+            }
+
+            if (file.size > 2 * 1024 * 1024) {
+                alert("Image size must be less than 2 MB.");
+                this.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                selectedImageData = event.target.result;
+                imagePreview.src = selectedImageData;
+                imagePreview.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+
+        });
+
+
+        // Property form submission
+        document.getElementById("propertyForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const ownerName =
+                    document.getElementById("ownerName").value.trim();
+
+                const phone =
+                    document.getElementById("phone").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const price =
+                    Number(document.getElementById("price").value);
+
+                const area =
+                    Number(document.getElementById("area").value);
+
+                // Validate phone number
+                if (!/^[6-9]\d{9}$/.test(phone)) {
+                    alert("Please enter a valid 10-digit Indian mobile number.");
+                    return;
+                }
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+
+                if (price <= 0 || area <= 0) {
+                    alert("Price and area must be greater than zero.");
+                    return;
+                }
+
+                // Create property object
+                const property = {
+
+                    id: Date.now(),
+
+                    ownerName: ownerName,
+                    phone: phone,
+                    email: email,
+
+                    title: document.getElementById("propertyTitle").value,
+                    propertyType:
+                        document.getElementById("propertyType").value,
+
+                    listingType:
+                        document.getElementById("listingType").value,
+
+                    city: document.getElementById("city").value,
+                    address: document.getElementById("address").value,
+
+                    price: price,
+
+                    bhk: document.getElementById("bhk").value,
+
+                    bathrooms:
+                        document.getElementById("bathrooms").value,
+
+                    area: area,
+
+                    description:
+                        document.getElementById("description").value,
+
+                    image: selectedImageData,
+
+                    date: new Date().toLocaleDateString()
+
+                };
+
+                // Save property in LocalStorage
+                let properties =
+                    JSON.parse(localStorage.getItem("postedProperties")) || [];
+
+                properties.push(property);
+
+                try {
+                    localStorage.setItem(
+                        "postedProperties",
+                        JSON.stringify(properties)
+                    );
+                } catch (error) {
+                    alert("Storage is full. Please use a smaller image.");
+                    return;
+                }
+
+                // Show success message
+                document.getElementById("successMessage").style.display =
+                    "block";
+
+                // Reset form
+                this.reset();
+
+                imagePreview.style.display = "none";
+                imagePreview.removeAttribute("src");
+                selectedImageData = "";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            });
+
+    </script>
+
+</body>
+</html>

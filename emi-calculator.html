@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator | DreamHome</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .calculator-section {
+            padding: 55px 8%;
+            background: #f4f6fa;
+            min-height: 75vh;
+        }
+
+        .calculator-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .calculator-heading h1 {
+            color: #14213d;
+            font-size: 32px;
+        }
+
+        .calculator-heading p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .calculator-container {
+            max-width: 950px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #14213d;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .input-group input[type="range"] {
+            padding: 0;
+            margin-top: 12px;
+            accent-color: #fca311;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            background: #fca311;
+            border: none;
+            border-radius: 6px;
+            color: #14213d;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .calculate-btn:hover {
+            background: #e69500;
+        }
+
+        .result-box {
+            background: #14213d;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result-box h2 {
+            margin-bottom: 25px;
+        }
+
+        .result-item {
+            margin: 22px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #526078;
+        }
+
+        .result-item p {
+            color: #ddd;
+            margin-bottom: 8px;
+        }
+
+        .result-item h3 {
+            color: #fca311;
+            font-size: 25px;
+        }
+
+        .calculator-note {
+            margin-top: 20px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media(max-width: 750px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+                padding: 22px;
+            }
+
+            .calculator-heading h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Dream<span>Home</span></div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="buy.html">Buy</a></li>
+                <li><a href="rent.html">Rent</a></li>
+                <li><a href="emi-calculator.html" class="active">EMI Calculator</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="post-property.html" class="post-btn">Post Property</a></li>
+            </ul>
+
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <!-- EMI Calculator -->
+    <section class="calculator-section">
+
+        <div class="calculator-heading">
+            <h1>Home Loan EMI Calculator</h1>
+            <p>Calculate your monthly home loan installment easily.</p>
+        </div>
+
+        <div class="calculator-container">
+
+            <!-- Input Section -->
+            <div>
+
+                <div class="input-group">
+                    <label for="loanAmount">Loan Amount (₹)</label>
+                    <input type="number" id="loanAmount"
+                           value="3000000" min="1" max="100000000">
+                    <input type="range" id="loanRange"
+                           min="100000" max="10000000"
+                           step="50000" value="3000000">
+                </div>
+
+                <div class="input-group">
+                    <label for="interestRate">
+                        Annual Interest Rate (%)
+                    </label>
+                    <input type="number" id="interestRate"
+                           value="8.5" min="0" max="30" step="0.1">
+                    <input type="range" id="interestRange"
+                           min="0" max="20" step="0.1" value="8.5">
+                </div>
+
+                <div class="input-group">
+                    <label for="loanTenure">Loan Tenure (Years)</label>
+                    <input type="number" id="loanTenure"
+                           value="20" min="1" max="40">
+                    <input type="range" id="tenureRange"
+                           min="1" max="40" value="20">
+                </div>
+
+                <button class="calculate-btn" onclick="calculateEMI()">
+                    Calculate EMI
+                </button>
+
+                <p class="calculator-note">
+                    Note: This calculator provides an estimated EMI.
+                    Actual loan terms may vary depending on your bank
+                    and loan agreement.
+                </p>
+
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-box">
+
+                <h2>Your Loan Summary</h2>
+
+                <div class="result-item">
+                    <p>Monthly EMI</p>
+                    <h3 id="monthlyEMI">₹0</h3>
+                </div>
+
+                <div class="result-item">
+                    <p>Total Interest</p>
+                    <h3 id="totalInterest">₹0</h3>
+                </div>
+
+                <div class="result-item">
+                    <p>Total Payment</p>
+                    <h3 id="totalPayment">₹0</h3>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 DreamHome. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        const loanAmount = document.getElementById("loanAmount");
+        const loanRange = document.getElementById("loanRange");
+
+        const interestRate = document.getElementById("interestRate");
+        const interestRange = document.getElementById("interestRange");
+
+        const loanTenure = document.getElementById("loanTenure");
+        const tenureRange = document.getElementById("tenureRange");
+
+        // Synchronize input boxes and sliders
+        loanAmount.addEventListener("input", function() {
+            loanRange.value = this.value;
+        });
+
+        loanRange.addEventListener("input", function() {
+            loanAmount.value = this.value;
+        });
+
+        interestRate.addEventListener("input", function() {
+            interestRange.value = this.value;
+        });
+
+        interestRange.addEventListener("input", function() {
+            interestRate.value = this.value;
+        });
+
+        loanTenure.addEventListener("input", function() {
+            tenureRange.value = this.value;
+        });
+
+        tenureRange.addEventListener("input", function() {
+            loanTenure.value = this.value;
+        });
+
+        // Format Indian currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // EMI Calculation
+        function calculateEMI() {
+
+            let P = Number(loanAmount.value);
+            let annualRate = Number(interestRate.value);
+            let years = Number(loanTenure.value);
+
+            if (!Number.isFinite(P) || P < 1 || P > 100000000) {
+                alert("Enter a loan amount between ₹1 and ₹10 crore.");
+                return;
+            }
+
+            if (!Number.isFinite(annualRate) ||
+                annualRate < 0 || annualRate > 30) {
+                alert("Enter an interest rate between 0% and 30%.");
+                return;
+            }
+
+            if (!Number.isInteger(years) || years < 1 || years > 40) {
+                alert("Enter a loan tenure between 1 and 40 years.");
+                return;
+            }
+
+            let r = annualRate / 12 / 100;
+            let n = years * 12;
+            let emi;
+
+            if (r === 0) {
+                emi = P / n;
+            } else {
+                emi = P * r * Math.pow(1 + r, n) /
+                      (Math.pow(1 + r, n) - 1);
+            }
+
+            let totalPayment = emi * n;
+            let totalInterest = totalPayment - P;
+
+            document.getElementById("monthlyEMI").innerText =
+                formatCurrency(emi);
+
+            document.getElementById("totalInterest").innerText =
+                formatCurrency(totalInterest);
+
+            document.getElementById("totalPayment").innerText =
+                formatCurrency(totalPayment);
+        }
+
+        // Calculate initial values when page loads
+        calculateEMI();
+    </script>
+
+</body>
+</html>

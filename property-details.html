@@ -1,0 +1,595 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Details | DreamHome</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .details-header {
+            background: #102a43;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .details-container {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .thumbnail-container img {
+            width: 120px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 35px;
+        }
+
+        .property-description,
+        .contact-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .property-description h2 {
+            color: #102a43;
+            margin-bottom: 15px;
+        }
+
+        .property-price {
+            color: #d89400;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .property-features {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            background: #f1f5f9;
+            padding: 18px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .amenities span {
+            background: #edf2f7;
+            padding: 12px 18px;
+            border-radius: 20px;
+        }
+
+        .contact-box button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            background: #102a43;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-box .fav-btn {
+            background: #e5a000;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media(max-width:750px) {
+
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 280px;
+            }
+
+            .property-features {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .thumbnail-container img {
+                width: 90px;
+                height: 70px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+
+<nav class="navbar">
+
+<h2 class="logo">Dream<span>Home.</span></h2>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="buy.html">Buy</a></li>
+<li><a href="rent.html">Rent</a></li>
+<li><a href="emi-calculator.html">EMI Calculator</a></li>
+<li><a href="agents.html">Agents</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="post-property.html" class="post-btn">Post Property</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<!-- PAGE HEADING -->
+
+<section class="details-header">
+
+<h1>Property Details</h1>
+
+<p>Explore every detail before choosing your dream home.</p>
+
+</section>
+
+
+<!-- PROPERTY DETAILS -->
+
+<section class="details-container">
+
+<img
+id="mainImage"
+class="main-image"
+src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200"
+alt="Property Image">
+
+
+<div class="thumbnail-container">
+
+<img onclick="changeImage(this)"
+src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700"
+alt="Property view 1">
+
+<img onclick="changeImage(this)"
+src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700"
+alt="Property view 2">
+
+<img onclick="changeImage(this)"
+src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=700"
+alt="Property view 3">
+
+</div>
+
+
+<div class="details-content">
+
+
+<!-- LEFT SIDE -->
+
+<div class="property-description">
+
+<h2 id="propertyName">Luxury Modern Villa</h2>
+
+<p id="propertyLocation">📍 Noida, Uttar Pradesh</p>
+
+<p class="property-price" id="propertyPrice">₹85,00,000</p>
+
+
+<h3>Property Information</h3>
+
+
+<div class="property-features">
+
+<div class="feature">
+<h3 id="propertyBhk">3 BHK</h3>
+<p>Bedrooms</p>
+</div>
+
+<div class="feature">
+<h3 id="propertyBath">2</h3>
+<p>Bathrooms</p>
+</div>
+
+<div class="feature">
+<h3 id="propertyArea">1800</h3>
+<p>Sq. Ft.</p>
+</div>
+
+</div>
+
+
+<h2>About This Property</h2>
+
+<p id="propertyDescription">
+
+This beautiful modern property offers spacious bedrooms,
+a stylish living area, a modern kitchen and comfortable
+surroundings. It is ideal for families looking for a
+comfortable and convenient lifestyle.
+
+</p>
+
+
+<h2 style="margin-top:30px;">Amenities & Facilities</h2>
+
+
+<div class="amenities">
+
+<span>🅿 Parking</span>
+<span>🏊 Swimming Pool</span>
+<span>🌳 Garden</span>
+<span>🔒 Security</span>
+<span>🏋 Gym</span>
+<span>🛗 Lift</span>
+<span>⚡ Power Backup</span>
+<span>💧 Water Supply</span>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
+
+<div class="contact-box">
+
+<h2>Interested in this Property?</h2>
+
+<p style="margin-top:12px;">
+Contact the property owner for more information.
+</p>
+
+
+<button class="fav-btn" onclick="saveCurrentFavourite()">
+♡ Add to Favourite
+</button>
+
+
+<form onsubmit="sendEnquiry(event)">
+
+<input
+type="text"
+id="buyerName"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+id="buyerEmail"
+placeholder="Your Email"
+required>
+
+<input
+type="tel"
+id="buyerPhone"
+placeholder="Mobile Number"
+pattern="[0-9]{10}"
+title="Enter a 10-digit mobile number"
+required>
+
+<textarea
+id="buyerMessage"
+placeholder="Your Message"
+rows="4"
+required></textarea>
+
+<button type="submit">
+Contact Owner
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>DreamHome.</h2>
+
+<p>Your dream home is just one click away.</p>
+
+<p>© 2026 DreamHome. All Rights Reserved.</p>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+// Property information
+
+const propertyData = {
+
+1: {
+name: "Luxury Modern Villa",
+location: "Noida, Uttar Pradesh",
+price: "₹85,00,000",
+bhk: "3 BHK",
+bath: "2",
+area: "1800",
+type: "Buy"
+},
+
+2: {
+name: "Modern Family Apartment",
+location: "Ghaziabad, Uttar Pradesh",
+price: "₹55,00,000",
+bhk: "2 BHK",
+bath: "2",
+area: "1200",
+type: "Buy"
+},
+
+3: {
+name: "Independent House",
+location: "Delhi, India",
+price: "₹1,20,00,000",
+bhk: "4 BHK",
+bath: "3",
+area: "2200",
+type: "Buy"
+},
+
+4: {
+name: "Affordable Modern Flat",
+location: "Greater Noida",
+price: "₹40,00,000",
+bhk: "2 BHK",
+bath: "2",
+area: "1100",
+type: "Buy"
+},
+
+5: {
+name: "Modern 2 BHK Apartment",
+location: "Noida, Uttar Pradesh",
+price: "₹18,000 / Month",
+bhk: "2 BHK",
+bath: "2",
+area: "1200",
+type: "Rent"
+},
+
+6: {
+name: "Premium Family House",
+location: "Delhi, India",
+price: "₹30,000 / Month",
+bhk: "3 BHK",
+bath: "2",
+area: "1500",
+type: "Rent"
+},
+
+7: {
+name: "Affordable 1 BHK Flat",
+location: "Ghaziabad, Uttar Pradesh",
+price: "₹10,000 / Month",
+bhk: "1 BHK",
+bath: "1",
+area: "650",
+type: "Rent"
+},
+
+8: {
+name: "Luxury Rental Villa",
+location: "Greater Noida",
+price: "₹25,000 / Month",
+bhk: "3 BHK",
+bath: "3",
+area: "1800",
+type: "Rent"
+}
+
+};
+
+
+// Get selected property
+
+const params = new URLSearchParams(window.location.search);
+
+const propertyId = params.get("id") || "1";
+
+const property = propertyData[propertyId];
+
+
+// Display property
+
+if(property) {
+
+document.getElementById("propertyName").innerText =
+property.name;
+
+document.getElementById("propertyLocation").innerText =
+"📍 " + property.location;
+
+document.getElementById("propertyPrice").innerText =
+property.price;
+
+document.getElementById("propertyBhk").innerText =
+property.bhk;
+
+document.getElementById("propertyBath").innerText =
+property.bath;
+
+document.getElementById("propertyArea").innerText =
+property.area;
+
+document.title = property.name + " | DreamHome";
+
+document.getElementById("propertyDescription").innerText =
+property.type === "Rent"
+? "This comfortable rental property offers a spacious living area, well-designed bedrooms and convenient facilities. It is suitable for families looking for a quality home on rent."
+: "This beautiful property offers spacious bedrooms, modern interiors, a stylish kitchen and comfortable surroundings. It is ideal for families looking for their dream home.";
+
+}
+
+else {
+
+document.querySelector(".details-container").innerHTML =
+"<h2>Property not found. Please return to the Buy or Rent page.</h2>";
+
+}
+
+
+// Image gallery
+
+function changeImage(image) {
+
+document.getElementById("mainImage").src = image.src;
+
+}
+
+
+// Favourite functionality
+
+function saveCurrentFavourite() {
+
+let favourites =
+JSON.parse(localStorage.getItem("favourites")) || [];
+
+const id = Number(propertyId);
+
+if(favourites.includes(id)) {
+
+alert("This property is already in your favourites!");
+
+}
+
+else {
+
+favourites.push(id);
+
+localStorage.setItem(
+"favourites",
+JSON.stringify(favourites)
+);
+
+alert("Property added to favourites!");
+
+}
+
+}
+
+
+// Enquiry form
+
+function sendEnquiry(event) {
+
+event.preventDefault();
+
+const name =
+document.getElementById("buyerName").value;
+
+const email =
+document.getElementById("buyerEmail").value;
+
+const phone =
+document.getElementById("buyerPhone").value;
+
+const message =
+document.getElementById("buyerMessage").value;
+
+if(!/^[0-9]{10}$/.test(phone)) {
+
+alert("Please enter a valid 10-digit mobile number.");
+
+return;
+
+}
+
+const enquiry = {
+
+name,
+email,
+phone,
+message,
+property: property ? property.name : "Unknown",
+date: new Date().toLocaleString()
+
+};
+
+let enquiries =
+JSON.parse(localStorage.getItem("enquiries")) || [];
+
+enquiries.push(enquiry);
+
+localStorage.setItem(
+"enquiries",
+JSON.stringify(enquiries)
+);
+
+alert("Your enquiry has been submitted successfully!");
+
+event.target.reset();
+
+}
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rent Property | DreamHome</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.page-heading {
+    background: #102a43;
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.filter-section {
+    background: white;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    border-radius: 10px;
+}
+
+.filter-section select,
+.filter-section input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.filter-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.listing-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.listing-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.listing-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.listing-info {
+    padding: 20px;
+}
+
+.listing-info h3 {
+    margin-bottom: 10px;
+}
+
+.listing-info p {
+    margin: 10px 0;
+    color: #666;
+}
+
+.price {
+    color: #d89400 !important;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.listing-info button {
+    background: #102a43;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 3px 0 0;
+}
+
+.fav-btn {
+    background: #e5a000 !important;
+}
+
+.no-results {
+    display: none;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+}
+
+@media(max-width:800px) {
+    .filter-section,
+    .listing-container {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:550px) {
+    .filter-section,
+    .listing-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<h2 class="logo">Dream<span>Home.</span></h2>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<ul class="nav-links" id="navLinks">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="buy.html">Buy</a></li>
+
+<li><a href="rent.html">Rent</a></li>
+
+<li><a href="emi-calculator.html">EMI Calculator</a></li>
+
+<li><a href="agents.html">Agents</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+<li><a href="post-property.html" class="post-btn">Post Property</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<section class="page-heading">
+
+<h1>Find Rental Properties</h1>
+
+<p>Discover comfortable homes at affordable prices.</p>
+
+</section>
+
+
+<!-- FILTER SECTION -->
+
+<section class="filter-section">
+
+<div>
+
+<label>City</label>
+
+<select id="cityFilter" onchange="filterProperties()">
+
+<option value="">All Cities</option>
+
+<option value="Noida">Noida</option>
+
+<option value="Delhi">Delhi</option>
+
+<option value="Ghaziabad">Ghaziabad</option>
+
+<option value="Greater Noida">Greater Noida</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>BHK</label>
+
+<select id="bhkFilter" onchange="filterProperties()">
+
+<option value="">All BHK</option>
+
+<option value="1">1 BHK</option>
+
+<option value="2">2 BHK</option>
+
+<option value="3">3 BHK</option>
+
+<option value="4">4 BHK</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Maximum Monthly Rent</label>
+
+<input type="range"
+id="priceFilter"
+min="5000"
+max="100000"
+step="5000"
+value="100000"
+oninput="updatePrice(); filterProperties();">
+
+<p id="priceValue">₹1,00,000</p>
+
+</div>
+
+
+<div>
+
+<label>Search Location</label>
+
+<input type="text"
+id="searchFilter"
+placeholder="Search location..."
+oninput="filterProperties()">
+
+</div>
+
+</section>
+
+
+<h2 style="text-align:center;">Available Rental Properties</h2>
+
+
+<section class="listing-container" id="propertyList">
+
+
+<div class="listing-card"
+data-city="Noida"
+data-bhk="2"
+data-price="18000">
+
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700"
+alt="Rental Apartment">
+
+<div class="listing-info">
+
+<h3>Modern 2 BHK Apartment</h3>
+
+<p>📍 Noida, Uttar Pradesh</p>
+
+<p class="price">₹18,000 / Month</p>
+
+<p>2 BHK | 2 Bathroom | 1200 Sq.ft.</p>
+
+<button onclick="viewProperty(5)">View Details</button>
+
+<button class="fav-btn" onclick="toggleFavourite(5)">♡ Favourite</button>
+
+</div>
+
+</div>
+
+
+
+<div class="listing-card"
+data-city="Delhi"
+data-bhk="3"
+data-price="30000">
+
+<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=700"
+alt="Delhi Rental House">
+
+<div class="listing-info">
+
+<h3>Premium Family House</h3>
+
+<p>📍 Delhi, India</p>
+
+<p class="price">₹30,000 / Month</p>
+
+<p>3 BHK | 2 Bathroom | 1500 Sq.ft.</p>
+
+<button onclick="viewProperty(6)">View Details</button>
+
+<button class="fav-btn" onclick="toggleFavourite(6)">♡ Favourite</button>
+
+</div>
+
+</div>
+
+
+
+<div class="listing-card"
+data-city="Ghaziabad"
+data-bhk="1"
+data-price="10000">
+
+<img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=700"
+alt="Affordable Flat">
+
+<div class="listing-info">
+
+<h3>Affordable 1 BHK Flat</h3>
+
+<p>📍 Ghaziabad, Uttar Pradesh</p>
+
+<p class="price">₹10,000 / Month</p>
+
+<p>1 BHK | 1 Bathroom | 650 Sq.ft.</p>
+
+<button onclick="viewProperty(7)">View Details</button>
+
+<button class="fav-btn" onclick="toggleFavourite(7)">♡ Favourite</button>
+
+</div>
+
+</div>
+
+
+
+<div class="listing-card"
+data-city="Greater Noida"
+data-bhk="3"
+data-price="25000">
+
+<img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700"
+alt="Luxury Rental Villa">
+
+<div class="listing-info">
+
+<h3>Luxury Rental Villa</h3>
+
+<p>📍 Greater Noida</p>
+
+<p class="price">₹25,000 / Month</p>
+
+<p>3 BHK | 3 Bathroom | 1800 Sq.ft.</p>
+
+<button onclick="viewProperty(8)">View Details</button>
+
+<button class="fav-btn" onclick="toggleFavourite(8)">♡ Favourite</button>
+
+</div>
+
+</div>
+
+
+<div class="no-results" id="noResults">
+
+<h3>No Rental Properties Found!</h3>
+
+<p>Try changing your filters.</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h2>DreamHome.</h2>
+
+<p>Your dream home is just one click away.</p>
+
+<p>© 2026 DreamHome. All Rights Reserved.</p>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+function updatePrice() {
+
+let price = document.getElementById("priceFilter").value;
+
+document.getElementById("priceValue").innerText =
+"₹" + Number(price).toLocaleString("en-IN") + " / Month";
+
+}
+
+
+function filterProperties() {
+
+let city = document.getElementById("cityFilter").value;
+
+let bhk = document.getElementById("bhkFilter").value;
+
+let price = Number(document.getElementById("priceFilter").value);
+
+let search = document.getElementById("searchFilter")
+.value.toLowerCase();
+
+let properties = document.querySelectorAll(".listing-card");
+
+let count = 0;
+
+properties.forEach(property => {
+
+let propertyCity = property.dataset.city;
+
+let propertyBhk = property.dataset.bhk;
+
+let propertyPrice = Number(property.dataset.price);
+
+let title = property.querySelector("h3").innerText.toLowerCase();
+
+let cityMatch = !city || city === propertyCity;
+
+let bhkMatch = !bhk || bhk === propertyBhk;
+
+let priceMatch = propertyPrice <= price;
+
+let searchMatch =
+propertyCity.toLowerCase().includes(search) ||
+title.includes(search);
+
+if(cityMatch && bhkMatch && priceMatch && searchMatch) {
+
+property.style.display = "block";
+
+count++;
+
+}
+
+else {
+
+property.style.display = "none";
+
+}
+
+});
+
+document.getElementById("noResults").style.display =
+count === 0 ? "block" : "none";
+
+}
+
+
+// Read city from homepage
+
+const params = new URLSearchParams(window.location.search);
+
+const cityParam = params.get("city");
+
+if(cityParam) {
+
+document.getElementById("cityFilter").value = cityParam;
+
+if (!["Noida", "Delhi", "Ghaziabad", "Greater Noida"]
+.includes(cityParam)) {
+
+document.getElementById("searchFilter").value = cityParam;
+
+}
+
+filterProperties();
+
+}
+
+</script>
+
+</body>
+</html>
